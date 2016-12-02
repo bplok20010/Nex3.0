@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery.mobile.changePage demo</title>
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+<body>
+ 
+<div data-role="page" id="page1">
+  <div data-role="header">
+    <h1>Page 1</h1>
+  </div>
+  <div role="main" class="ui-content">
+    <form id="search">
+      <p>Please fill in the form below:<br /><br />
+      <label for="choice">Favorite framework:</label>
+      <input type="text" name="choice" id="choice" value="jQuery Mobile" />
+      </p>
+    </form>
+  </div>
+</div>
+ 
+<script>
+$.mobile.changePage( "../resources/results.php", {
+  type: "post",
+  data: $( "form#search" ).serialize(),
+  changeHash: false
+});
+</script>
+ 
+</body>
+</html>

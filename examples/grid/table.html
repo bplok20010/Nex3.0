@@ -1,0 +1,239 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <link rel="stylesheet" href="../../src/themes/default/grid/absgrid.css">
+         <link rel="stylesheet" href="../../src/themes/default/form/form.css">
+        <link rel="stylesheet" href="../../src/themes/default/pager/Pager.css">
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <!--<script src="../../src/nex/Nex.js"></script>
+        <script src="../../src/nex/Base.js"></script>
+        <script src="../../src/nex/core/Base.js"></script>
+        <script src="../../src/nex/core/Class.js"></script>
+        <script src="../../src/nex/EventObject.js"></script>
+        <script src="../../src/nex/ComponentManager.js"></script>
+        <script src="../../src/nex/AbstractComponent.js"></script>
+        <script src="../../src/nex/Loader.js"></script>-->
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/grid/AbstractGrid.js"></script>
+    </head>
+    <body style="padding:10px;">
+    	<pre>
+        	<div>tab</div>
+        </pre>
+        <div>
+        	<span>TEST</span><span style="display:inline-block; height:16px;">....</span>
+        </div>
+        <button onClick="grid.showGridHeader();">显示HEADER</button>
+        <button onClick="grid.hideGridHeader();">隐藏HEADER</button>
+        <button onClick="grid.showGridHLines();">显示HLine</button>
+        <button onClick="grid.hideGridHLines();">隐藏HLine</button>
+        <br>
+        <button onClick="grid.selectAll();">选择所有</button>
+        <button onClick="grid.unselectAll();">取消选择所有</button>
+    	<style type="text/css">
+			.a1 { width:300px; border-right:1px solid #dedede}
+		</style>
+        <input type="checkbox">
+        <div id="loger"></div>
+        <div id="timer"></div>
+        <div style="width:500px; overflow:hidden; border:1px solid red;">
+    	<table border="0" cellpadding="0" cellspacing="0"><tr><td></td><td></td></tr></table>
+        <script type="text/javascript">
+			var xml;
+			function getXml (){
+				Nex.Create('ajax',{ 
+					sendType : 'form',
+					responseXML : false,
+					docRoot : 'textarea',
+					url:'2.php',
+					data:{nobo:1,c:[1,3,4,5]},
+					onSuccess : function(d){ alert(d); } 
+				});
+			}
+			/*setTimeout(function(){
+				$('#thd').html('<tr><td class="a1" >1</td><td class="a1" >2</td><td class="a1" >3</td></tr>')	;
+				$('#tb').html('<tr><td class="a1" >1</td><td class="a1" >2</td><td class="a1" >3</td></tr>')	;
+			},1000);*/
+		</script>
+        </div>
+        
+       <script type="text/javascript">
+	   var dataset = [];
+	   var html = [];
+	   var console = console || {
+		  	log : function(){
+				var s = [].slice.apply( arguments, [ 0 ]  )
+				$('#loger').append( $('<div>'+ s.join(' ') +'</div>') );	
+			} 
+		  };
+	   console.time = console.time || function( s ){
+		   timer[s] = $.now();
+		}
+		console.timeEnd = console.timeEnd || function( s ){
+		   var t = $.now() - timer[s];
+		   var logs = s+': '+ t + ' ms';
+		  // $('#timer').append($('<div>'+logs+'</div>'));
+		   console.log( logs );
+		}
+		for( var i=0;i<300;i++ ) {
+			dataset.push({
+				b_x : i,
+				e : i*2,
+				dept_name : i+'人事部'	
+			});	
+			html.push( [
+				'<tr id="grid-3_row_62" style class="nex-grid-row" rid="62" ridx="62"><td id="grid-3_row_62_col4" class=" nex-grid-col4 nex-grid-col-first  " field="field4" valign="middle" align="center"><div id="grid-3_row_62_col4_text" class="nex-grid-cell  nex-grid-cell-nowrap">63</div></td><td id="grid-3_row_62_col6" class=" nex-grid-col6  "  valign="middle" align="center"><div id="grid-3_row_62_col6_text" class="nex-grid-cell  nex-grid-cell-nowrap"><span class="nex-icon-checkbox nex-grid-cell-checkbox"></span></div></td><td id="grid-3_row_62_col8" class=" nex-grid-col8  " field="d&quot;b" valign="middle" align="left"><div id="grid-3_row_62_col8_text" class="nex-grid-cell  nex-grid-cell-nowrap">&nbsp;</div></td><td id="grid-3_row_62_col9" class=" nex-grid-col9  " field="e" valign="middle" align="left"><div id="grid-3_row_62_col9_text" class="nex-grid-cell  nex-grid-cell-nowrap">62</div></td><td id="grid-3_row_62_col10" class=" nex-grid-col10  222" field="b_x" valign="middle" align="left"><div id="grid-3_row_62_col10_text" class="nex-grid-cell  nex-grid-cell-nowrap"><input type="checkbox"></div></td><td id="grid-3_row_62_col11" class=" nex-grid-col11  nex-grid-col-last " field="dept_name" valign="bottom" align="right"><div id="grid-3_row_62_col11_text" class="nex-grid-cell  nex-grid-cell-nowrap">人事部62</div></td></tr>'
+			].join('') );
+		}
+		console.time('test');
+		//$(tb).html( html.join('') );
+		console.timeEnd('test');
+	   	var grid;
+		function start(){
+			grid = Nex.Create('Nex.AbstractGrid',{
+						width : 700,height : '500',
+						showHeader : true,
+						title : 'test',
+						html : 'adf',
+						iconCls : 't',
+						loadOnce : true,
+						sortField : 'dept_name',
+						sortOrder : 'desc',
+						//url : 'data.json',
+						border : false,
+						closable : true,
+						bodyPadding :10,
+						//scroll : false,
+						showPager : true,
+						//showColumnResizeBorder : true,
+						showRowLineV : !false,
+						onGridViewHeaderContextMenu : function(){
+							//console.log(123)	
+						},
+						pageSize : 20,
+						showRowLineH : !true,
+						//showGridHeader : false,
+						singleSelect : true,
+						enableUnselect : true,
+						data : dataset,
+						emptyText : '没有数据',
+						bodySelectionable : false,
+						//forceFit : true,
+						bbar : [
+							'-----------------------------------',
+							'<div>-----------------------------------</div>'
+						],
+						multiColumnFromStrData : {
+							china : { title : '中国' },
+							china_beijing : { title : '北京',width : 200 },
+							china_shanghai : { title : '上海',width : 200 },
+							//b_x : { width : 100 }
+						},
+						columns : [
+							{ type : 'index' },
+							{ type : 'checkbox' },
+							{ field : 'china_beijing', title : '北京',width : 200 },
+							{ field : 'china_shanghai', title : '上海',width : 200 },
+							{ field:"a",title:'A',tips : '------------',columns : [
+								{field:'d"b',title:'D',sortable:true,width : '300',cellAfterRender : function( el, v, r ,f , d ,c ){
+									el.html( '??' )	
+								}},
+								{field:'e',title:'E',width : '200', renderer : function(s,d,f,r){ return r; }}
+							] },
+							{ field:"b_x",width:100,headerCls : '111',cellCls : '222',renderer : '<input type="checkbox">' },
+							{ field:"dept_name",width:100,valign : 'bottom',align:'right',sortable:true,sortFn : function(a,b,asc){
+								var isAsc = asc === 'asc';
+								var a_t = parseInt(a.dept_name);
+								var b_t = parseInt(b.dept_name);
+								if( a_t > b_t ) {
+									return isAsc ? 1 : -1;
+								} if( a_t === b_t ){
+									return 0;
+								} else {
+									return isAsc ? -1 : 1;
+								}
+							},cellCssText : 'border:1px solid red; color:red;' },
+							{ type : 'empty' }
+						]
+					});	
+		}
+			Nex.onReady(function(){
+				var loader = Nex.getLoader();
+				console.log( Nex.AbstractGrid );
+				
+				console.time('grid')
+				start();
+				console.timeEnd('grid')	
+				console.log('fireForx??',Nex.AbstractGrid);
+			});
+		</script> 
+        <div class="style-sheet" id="sheet" style="display:none; position:absolute; right:0px;">styleSheet -test</div>
+        <script> 
+		var style = document.createElement('style'); 
+		$(style).appendTo($('body'));
+		function addCssRules(style, cssSelector, cssText, update){
+			function fcamelCase( all, letter ) {
+				return ( letter + "" ).toUpperCase();
+			}
+			function camelCase( string ){
+				var rmsPrefix = /^-ms-/,
+					rdashAlpha = /-([\da-z])/gi;
+				return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+			}
+			function $caller(cssSelector, cssText, update){
+				var undef;
+				var update = update === undef ? true : update;
+				return update ? updateRules.apply(this,[cssSelector, cssText]) : addRules.apply(this,[cssSelector, cssText]);
+			};
+			function addRules( cssSelector, cssText ){
+				var styleSheet = style.styleSheet?style.styleSheet:style.sheet;
+				var rules = styleSheet.cssRules || styleSheet.rules;
+				if( styleSheet.addRule ) {
+					styleSheet.addRule(cssSelector,cssText);	
+				} else {
+					styleSheet.insertRule(cssSelector+"{"+cssText+"}", rules.length);	
+				}
+				return $caller;
+			}
+			function updateRules( cssSelector, cssText ){
+				var styleSheet = style.styleSheet?style.styleSheet:style.sheet;
+				var rules = styleSheet.cssRules || styleSheet.rules;
+				var rule = null;
+				for( var i=0, len=rules.length; i<len; i++ ) {
+					//只修改最后一个样式
+					if( rules[i].selectorText.toLowerCase() === cssSelector.toLowerCase() ) {
+						rule = rules[i];
+					}
+				}
+				if( !rule ) {
+					return addRules( cssSelector, cssText );
+				} else {
+					var css = ( cssText + "" ).split(';');
+					for( var k=0, len2 = css.length; k < len2; k++ ) {
+						var d = css[k].split(':');
+						rule.style[camelCase(d[0])] = d[1];	
+					}	
+				}
+				return $caller;
+			}
+			return $caller(cssSelector, cssText, update);
+		} 
+		
+		/*setTimeout(function(){
+			Nex.addCssRules(style,'.style-sheet','border:1px solid red;width:100px; height:200px;')('.style-sheet','background:#ccc');
+		},2000)
+		setTimeout(function(){
+			$(sheet).show();
+		},4000)*/
+		</script>
+        
+    </body>
+</html>

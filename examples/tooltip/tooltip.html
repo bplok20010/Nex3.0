@@ -1,0 +1,148 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/showat/nexShowAt.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <link rel="stylesheet" href="../../src/themes/default/window/Window2.css">
+        <link rel="stylesheet" href="../../src/themes/default/tooltip/ToolTip.css">
+        <script src="../../src/jquery-1.8.0.min.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/tooltip/ToolTip.js"></script>
+    </head>
+    <body>
+    	<style type="text/css">
+			.test1,.test2 {
+				margin:20px;
+				height:200px; border:1px solid #CCC;
+				position:relative;
+			}
+			.test2 {
+				height:100px;
+				overflow:visible;
+			}
+			.cell1,.cell2 {
+				width:80px; height:40px;
+				background:green;
+			}
+			.cell2 {
+				width:40px; height:20px;
+				background:red;
+				overflow:auto;
+			}
+		</style>
+        <div id="dot" style="position:absolute; left:200px; top:100px; width:1px; height:1px; background:red;"></div>
+        <div class="container" style="overflow:hidden;">
+           <div class="test1">
+           		<div class="cell1" id="cell1"></div>
+           </div>
+           <div style="height:200px; border:1px solid #ccc; position:relative; overflow:auto; padding:2px;">
+           		<div style=" height:300px;"></div>
+                <div id="post" style="margin-left:200px;">test</div>
+           </div>
+           <div class="test2" style="height:1900px;">
+           </div>
+           <div class="test2">
+           		<div class="cell2" id="cell2"></div>
+           </div>
+           <button id="btn" onClick="openWindow();">打开窗口</button>
+           <div style="position: relative; z-index:99; width:500px; height:500px; border:1px solid red; padding:20px;">
+           	<div style="position:absolute;  left:0px; top:0px; border:1px solid green; widows:10px; height:10px;"></div>
+           </div>
+           <div style="border:7px solid #FFF; border-top-color:#0F0;border-left-color:#0F0; position:absolute;"></div>
+        </div>
+        <div id="post2" style="margin-left:200px;">test</div>
+        <script type="text/javascript">
+		var win;
+		var xt = false;
+		function openWindow(){
+			 if( win ) {
+					win.toggle();
+					return; 
+				}
+			 win = Nex.Create('tooltip', {
+				//border : true,
+				showShadow : false,
+				title : '123'	,
+				bodyPadding : 5,
+				//border : false,
+				//backColor : 'red',
+				//borderColor : '#000',
+				//textColor : '#000',
+				showArrow : true,
+				//arrowOffset : 100,
+				ui : 'white',
+				html : '加载中...',
+				onDestroy : function(){
+					console.log('onDestroy?');	
+				},
+				showAt : $('#btn'),/*{
+					at : $('#btn')
+					,xAlign : 'left'
+					,yAlign : 'center'
+					,zAlign : 'x'
+					,offsetX : 5
+				},*/
+				//arrowDir : 'left',
+				//arrowAlign : 'left',
+				dir : 'bottom',
+				dirAlign : 'center',
+				offset : 0,
+				borderWidth : 2,
+				arrowBorderWidth : 2,
+				//arrowAlign : 'right',
+				onShow : function(){
+					var self = this;
+					//return;
+					//setTimeout(function(){
+						if(xt) return;
+						xt = true;
+						self.hide();
+						self.html('Hello ToolTips! loading Test');
+						//self.resetPosition();
+						self.show();
+					//},2000);	
+				},
+				onBeforeShow : function(){
+				},
+			//	arrowSize : 10,
+				onCreate : function(){
+				//	this.addCssRules('.nex-tooltip-arrow-left .nex-tooltip-arrow-bg','border-left-color: #FFF;')
+					/*var arrow = this.createArrow('top');
+					this.el.append(arrow);	
+					var arrow1 = this.createArrow('bottom');
+					this.el.append(arrow1);	
+					var arrow1 = this.createArrow('left');
+					this.el.append(arrow1);	*/
+					//var arrow1 = this.createArrow('right');
+					//this.el.append(arrow1);	
+					//console.log(arrow);
+				}
+			});
+		}
+		var showAt;
+		function s(){
+			showAt = new Nex.showAt({
+				el : $('#cell2'),
+				at :  $('#cell1'),
+				visibleable : false,
+				autoShow : true
+			});		
+		}
+		/*$( function(){
+			showAt = new Nex.showAt({
+				el : $('#cell2'),
+				at :  $('#cell1'),
+				visibleable : false,
+				autoShow : true
+			});	
+		} );*/
+		</script>
+    </body>
+</html>

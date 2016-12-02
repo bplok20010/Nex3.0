@@ -1,0 +1,33 @@
+<pre class='xdebug-var-dump' dir='ltr'>
+<b>array</b> <i>(size=30)</i>
+  'HTTP_CACHE_CONTROL' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'no-cache'</font> <i>(length=8)</i>
+  'HTTP_PRAGMA' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'no-cache'</font> <i>(length=8)</i>
+  'HTTP_USER_AGENT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Java/1.8.0_05'</font> <i>(length=13)</i>
+  'HTTP_HOST' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'192.168.118.87'</font> <i>(length=14)</i>
+  'HTTP_ACCEPT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2'</font> <i>(length=52)</i>
+  'HTTP_CONNECTION' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'keep-alive'</font> <i>(length=10)</i>
+  'PATH' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'C:\ProgramData\Oracle\Java\javapath;C:\Ruby21-x64\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;D:\svn\bin;C:\Program Files\nodejs\;C:\Go\bin;C:\Users\asus\AppData\Roaming\npm;C:\Program Files\TortoiseGit\bin;D:\wamp\www\phantomjs-1.9.7-windows;D:\opt\jdk1.8.0_45\bin;C:\Python27;'</font> <i>(length=338)</i>
+  'SystemRoot' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'C:\Windows'</font> <i>(length=10)</i>
+  'COMSPEC' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'C:\Windows\system32\cmd.exe'</font> <i>(length=27)</i>
+  'PATHEXT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'</font> <i>(length=53)</i>
+  'WINDIR' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'C:\Windows'</font> <i>(length=10)</i>
+  'SERVER_SIGNATURE' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>''</font> <i>(length=0)</i>
+  'SERVER_SOFTWARE' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Apache/2.2.22 (Win32) PHP/5.4.3'</font> <i>(length=31)</i>
+  'SERVER_NAME' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'192.168.118.87'</font> <i>(length=14)</i>
+  'SERVER_ADDR' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'192.168.118.87'</font> <i>(length=14)</i>
+  'SERVER_PORT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'80'</font> <i>(length=2)</i>
+  'REMOTE_ADDR' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'192.168.118.89'</font> <i>(length=14)</i>
+  'DOCUMENT_ROOT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'D:/wamp/www'</font> <i>(length=11)</i>
+  'SERVER_ADMIN' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'admin@localhost'</font> <i>(length=15)</i>
+  'SCRIPT_FILENAME' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'D:/wamp/www/ajax.uchome/Nex3.0/test/download.php'</font> <i>(length=48)</i>
+  'REMOTE_PORT' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'62500'</font> <i>(length=5)</i>
+  'GATEWAY_INTERFACE' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'CGI/1.1'</font> <i>(length=7)</i>
+  'SERVER_PROTOCOL' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'HTTP/1.1'</font> <i>(length=8)</i>
+  'REQUEST_METHOD' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'GET'</font> <i>(length=3)</i>
+  'QUERY_STRING' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'resultCount=550&amp;status=0&amp;downloadDataUrl=http://192.168.118.89:8089/DataExtract/user/task/csv?taskId=172'</font> <i>(length=104)</i>
+  'REQUEST_URI' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'/ajax.uchome/Nex3.0/test/download.php?resultCount=550&amp;status=0&amp;downloadDataUrl=http://192.168.118.89:8089/DataExtract/user/task/csv?taskId=172'</font> <i>(length=142)</i>
+  'SCRIPT_NAME' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'/ajax.uchome/Nex3.0/test/download.php'</font> <i>(length=37)</i>
+  'PHP_SELF' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'/ajax.uchome/Nex3.0/test/download.php'</font> <i>(length=37)</i>
+  'REQUEST_TIME_FLOAT' <font color='#888a85'>=&gt;</font> <small>float</small> <font color='#f57900'>1441597205.538</font>
+  'REQUEST_TIME' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>1441597205</font>
+</pre>

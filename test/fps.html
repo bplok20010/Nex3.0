@@ -1,0 +1,64 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <script src="../src/jquery-1.8.3.js"></script>
+    </head>
+    <style>
+		body { padding:0; margin:0;}
+	</style>
+    <body style="height:100%;">
+    	<div id="pos1" style="width:5px; height:5px; background-color:green; position:absolute; left:10px; top:10px;"></div>
+        <div id="pos2" style="width:2px; height:2px; background-color:#000; position:absolute; left:10px; top:10px;"></div>
+        <div id="pos3" style="width:2px; height:2px; background-color:red; position:absolute; left:10px; top:10px;"></div>
+      <script type="text/javascript">
+	  	var fps = 60;//每秒刷新60次
+		var dist = 360;//旋转360度
+		
+		var curRad = 0;//初始角度
+		//地球
+		var d = 10;//用时5秒
+		var step = dist/(fps*d);
+		var r = 100;
+		//月球
+		var mcurRad = 0;//初始角度
+		var m = 20;
+		var md = 5;
+		var mstep = dist/(fps*md);
+		var x = y = 200;
+		document.addEventListener('mousemove',function(e){
+			x = e.pageX;
+			y = e.pageY;
+		});
+		/*$(pos).animate({
+			left : dist,
+			top : dist	
+		},5000);*/
+		
+		/*
+		* 弧度计算
+		*/
+		function toRad( rad ) {
+			return Math.PI/180 * rad;		
+		}
+		setInterval(function(){
+			curRad = (curRad + step) % 360;
+			var px = x + r * Math.cos(-toRad(curRad));
+			var py = y + r * Math.sin(-toRad(curRad));
+			//console.log( Math.sin(curRad) );
+			//console.log( -curRad,px, py );
+			pos1.style.left = px + 'px';	
+			pos1.style.top = py + 'px';
+			mcurRad = (mcurRad + mstep) % 360;
+			//月球
+			pos2.style.left = ( px + m * Math.cos(-toRad(mcurRad) ) ) + 'px';	
+			pos2.style.top = ( py + m * Math.cos(-toRad(mcurRad) ) ) + 'px';	
+			
+		},1000/fps);
+	  </script>
+    </body>
+</html>

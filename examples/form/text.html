@@ -1,0 +1,260 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/form/form.css">
+        <link rel="stylesheet" href="../../src/themes/default/buttons/nexButton.css">
+        <link rel="stylesheet" href="../../src/themes/default/grid/grid.debug.css">
+        <link rel="stylesheet" href="../../src/themes/default/tab/SimpleTab.css">
+        <link href="../../src/themes/default/tab/Tab.css" rel="stylesheet" type="text/css" />
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+    </head>
+    <body>
+    	<style type="text/css">
+		.error-tip {
+			position:absolute;
+			bottom:-20px;
+			padding:3px;	
+		}
+		</style>
+        <input type="text" value="te" id="ss" />
+    	<div style="width:500px; height:100px; padding:50px; border:1px solid red;">
+    	<table class="s" style="table-layout:fixed; height:200px" cellpadding="0" cellspacing="0" border="0">
+        	<tr>
+            	<td width="100">12</td>
+                <td width="12" style="overflow:hidden; padding:0px; margin:0px;"><div style="">adsfa</div></td>
+            </tr>
+        </table>
+        </div>
+        <div style="margin-left:10px; margin-top:10px; border:1px solid red; width:200px; height:30px; overflow:visible;" id="btns"></div>
+        <script type="text/javascript">
+		var A = Nex.define('A',{
+			test : function(s){ 
+				console.log('A',s);
+			}	
+		});
+		var B = Nex.define('B','A',{
+			test : function(s){ 
+				B._super('test',this,[s]);
+				console.log('B',s);
+			}	
+		});
+		var C = Nex.define('C','B',{
+			test : function(s){ 
+				C._super('test',this,[s]);
+				console.log('C',s);
+			}	
+		});
+		var D = Nex.define('D','Nex.Html',{
+			mixins : [ 'DropDown' ],
+			configs : {
+				onClick : function(){
+					this.showDropDown();	
+				},
+				dropdownMinWidth : 200,
+				dropdownItems : [
+					'1','2','3',4
+				]	
+			}
+				
+		});
+		var list = [
+			{ text : '测试1',value : '1' },
+			{ text : '测1试',value : '2' },
+			{ text : '测试',value : '3' },
+			{ text : '测1试',value : '4' },
+			{ text : '测试',value : '5' },
+			{ text : '测试',value : '6' }
+		];
+		var f1,f2;
+		var b1,b2,b3,b4;
+		$require( [
+			'Nex.form.Text',
+			'Nex.form.Select',
+			'Nex.button.Button',
+			'Nex.form.Trigger'
+		],function(){
+			Nex.Create( {
+				renderTo : $('#btns'),
+				xtype : 'button',
+				text : '123',
+				width : 50	
+			} );
+			Nex.Create( {
+				renderTo : $('#btns'),
+				xtype : 'button',
+				text : '123',
+				width : 50	
+			} );
+			Nex.Create( {
+				renderTo : $('#btns'),
+				xtype : 'button',
+				text : '123',
+				width : 50	
+			} );
+			b4 = Nex.Create( {
+				renderTo : $('#btns'),
+				xtype : 'button',
+				text : '123',
+				width : 50,
+				mixins : 'DropDown',
+				callBack : function(){
+					this.toggleDropDown([1,2,3,4,5,6])	
+				}
+			} );
+			f1 = Nex.Create('textfield',{
+				width : 300,
+				labelWidth : 40,
+				//showLabel : false,
+				labelPosition : 'right',
+				rules : 'required',
+				labelText : '',
+				name : 'test',
+				group : 'test',
+				value : 1,
+				placeholder : 'testtest',
+				//dropdownWidth : 400,
+				//dropdownItemVisible : false,
+				dropdownAnimate : true,
+				dropdownWidth : function(){
+							var at = this.getDropDownShowAt();
+							return at.outerWidth();	
+						},
+				items : function(){
+					return {
+						xtype : 'grid',
+						columns : [ { field : 'ID' },{ field:'Name' } ],
+						data : [
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'},
+							{ID : 1,Name : 'test'}
+						],
+						height : 200,
+						width : '100%'	
+					};
+				},
+				onBlur : function(){
+					console.log(11)	
+					//this.hideDropDown();	
+				},
+				onFocus : function(){
+					console.log(1122);
+					var f= this;
+					//setTimeout( function(){
+						f.toggleDropDown();	
+					//},0 );
+				}
+			});	
+			f2 = Nex.Create({
+						xtype : 'selectfield',
+						width : '30%',
+						autoResize : true,
+						labelText : '年龄',
+						//dropdownAnimate : true,
+						onDropDownItemClick : function(){
+							console.log(1);	
+						},
+						dropdownOtherHeight : 26,
+						dropdownSingleSelect : false,
+						dropdownMaxWidth1 : function(){
+							var at = this.getDropDownShowAt();
+							return at.outerWidth();	
+						},
+						onCreateDropDwon : function( dropdown ){
+							var sch = $('<div class="nex-search"></div>');
+							
+							dropdown.prepend(sch);
+							var self = this;
+							
+							Nex.Create('textfield',{
+								renderTo : sch,
+								showLabel : false,
+								labelText : '',
+								width : 390,
+								onMouseOut : function(){
+									//this.blur();
+								},
+								
+								onBlur : function(){
+									console.log(32);	
+								},
+								onTextChange : function(){
+									//搜索建议 隐藏item 而不是重新设置item
+									var items = self.configs.items;
+									var list = [];
+									var v = this.val();
+									var list = self.getDropDownListItems();
+									list.each( function(){
+										var text = $(this).text();
+										if( text.indexOf( v ) !== -1 ) {
+											$(this).show();
+										} else {
+											$(this).hide();	
+										}
+									} );
+									self.resetDropDownSizeAndPos();	
+									//or setDropDownList( list ) //来处理 单选建议用这个，多选建议用上面的
+								}
+							});
+						},
+						onSetDropDownSize11 : function(d){
+							//d.height -= 26;	
+						},
+						dropdownEmptyMsg : '<div style="text-align:center;">暂无数据</div>',
+						//dropdownWidth : 300,
+						//dropdownHeight : 200,
+						items : [
+								{ value : '1"1',text : '一"星' },
+								{ value : '2',text : '二星12' },
+								{ value : '3',text : '三星11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111123456789' },
+								{ value : '114',text : '四星31' },
+								{ value : '24',text : '四星41' },
+								{ value : '43',text : '四星51' },
+								{ value : '44',text : '四星61' },
+								{ value : '54',text : '四星71' },
+								{ value : '64',text : '四星81' },
+								{ value : '74',text : '四星91' },
+								{ value : '84',text : '四星a1' },
+								{ value : '49',text : '四星b1' },
+								{ value : '423',text : '四星c1' },
+								{ value : '412',text : '四星d1' },
+								{ value : '23444',text : '四星e1' },
+								{ value : '123414',text : '四星f1' },
+								{ value : '41234',text : '四星g1' },
+								{ value : '5',text : '五星' }
+							],
+						placeholder : '请输入...',
+						onChange : function(v){
+							console.log(v)	
+						},
+						value : '5',
+						name : 'age',
+						group : 'userinfo test',
+						onCreate : function(){
+							var el = this.getBody();
+							$('<div class="error-tip nex-form-tooltip">信息错误！</div>').appendTo( el );	
+						}
+					});
+		} );
+		$(document).click( function(){
+			//console.log('doc lick')	
+		} );	
+		</script>
+        
+    </body>
+</html>

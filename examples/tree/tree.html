@@ -1,0 +1,110 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <link rel="stylesheet" href="../../src/themes/default/tree/Tree.css">
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/tree/Tree.js"></script>
+    </head>
+<body>
+<table cellpadding="0" cellspacing="0" border="1">
+
+</table>
+<script type="text/javascript">
+//children
+var trees = [
+	
+	{text:'node3',id:3,leaf:false},
+	{text:'node4',id:4},
+	{text:'node52',id:5,order:-2},
+	{text:'node6',id:6},
+	{text:'node7',id:7,icon:'cc'},
+	{text:'node8',id:8},
+	{text:'node2',id:2,children:[{text:'node2',id:9}]},
+	
+	{text:'node56',id:1,children : [
+		{text:'node2',id:10,open:true,children:[{text:'node2',id:13},{text:'node2',open:true,id:25,children:[{text:'node2',id:49}]},{text:'node2',id:12}]}
+	]}
+];
+var data = {};
+
+function map_tree(_data,pid){
+	var undef;
+	for( var i=0;i<_data.length;i++ ) {
+		var node = _data[i];
+		node['_level'] = pid === undef ? 0 : data[pid]['_level']+1;
+		node['_parent'] = pid === undef ? null : pid;
+		data[ node['id'] ] = node; 
+		if( ( 'childs' in node ) && node['childs'].length ) {
+			map_tree(node['childs'],node['id']);
+		}
+	}
+};
+var tree,tree2;
+Nex.onReady( function(){
+	tree = new Nex.Tree({
+		title : 'Tree',
+		width : 200,
+		bodyPadding : 5,
+		//selectionable : false,
+		//headerSelectionable : true,
+		draggable : true,
+		droppable : true,
+		nodesSort:1,
+		simpleSelect:true,
+		animate : false,
+		expandOnLoad:0,
+		root : '-1',
+		showParentCheckBoxButton:false,
+		/*,url:getData*/
+		data:trees,
+		expandOnEvent : 2,
+		showTreeLines : true,
+		onNodeExpanderClick : function(){
+			//console.log( 'onNodeExpanderClick' );	
+		},
+		onResetOrder : function(s,d){
+			console.log( s, d );	
+		},
+		onMoveNode : function(s,d,p){
+			console.log( s, d, p );	
+		},
+		onCreateNodeSpacers:function( tid, lis){
+			lis.push( this.createSpacer('cc') );
+		}
+	});
+	tree2 = new Nex.Tree({
+		nodesSort:2,
+		expandOnEvent : 2,
+		animate : false,
+		root : '-1',
+		data:[{ text : '根节点', id : '0', leaf : false }],
+		expandOnLoad:0,
+		url:'http://127.0.0.1/jquery-puglins/zTree/node2.php',
+		simpleData:true,
+		//singleExpand : true,
+		onDblClick:function(th,tid){
+	
+		}
+	});	
+} );
+
+var sid = 100;
+function getData(tid,func){
+setTimeout(function(){
+	func([{text:'node37',id:45},{text:'node47',id:47,children:[{text:'node2',children:[{text:'node23',children:[{text:'node47',children:[{text:'node47',children:[{text:'node47',children:[{text:'node47',children:[{text:'node47',children:[{text:'node47',children:[{text:'node47',id:sid++}],id:sid++}],id:sid++}],id:sid++}],id:sid++}],id:sid++}],id:sid++}],id:sid++}],id:sid++}]},{text:'node47',id:50},{text:'node47',id:sid++},{text:'node47',id:sid++},{text:'node47',id:sid++},{text:'node47',id:sid++},{text:'node47',id:sid++},{text:'node47',id:sid++},{text:'node47',id:sid++}]);
+},1000)
+
+}
+
+</script>
+</body>
+</html>

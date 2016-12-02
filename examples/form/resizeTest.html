@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/form/form.css">
+        <link rel="stylesheet" href="../../src/themes/default/buttons/nexButton.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/nexPanel.css">
+        <link rel="stylesheet" href="../../src/themes/default/grid/grid.debug.css">
+        <link rel="stylesheet" href="../../src/themes/default/tab/SimpleTab.css">
+        <link href="../../src/themes/default/tab/Tab.css" rel="stylesheet" type="text/css" />
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <script src="../../src/nex/Base.js"></script>
+        <script src="../../src/nex/Nex.js"></script>
+        <script src="../../src/nex/Loader.js"></script>
+        <script src="../../src/nex/Ajax.js"></script>
+        <script src="../../src/nex/Html.js"></script>
+        <script src="../../src/nex/drag/Drag.js"></script>
+        <script src="../../src/nex/showat/ShowAt.js"></script>
+    </head>
+    <body>
+    	<style type="text/css">
+		</style>
+        <input type="text" value="te" id="ss" />
+    	<div style="width:500px; height:100px; padding:50px; border:1px solid red;">
+    	<table class="s" style="table-layout:fixed; height:200px" cellpadding="0" cellspacing="0" border="0">
+        	<tr>
+            	<td width="100">12</td>
+                <td width="12" style="overflow:hidden; padding:0px; margin:0px;"><div style="">adsfa</div></td>
+            </tr>
+        </table>
+        </div>
+        <div style="width:500px; display:none; height:500px;">
+        	<div>adfadfadfadf
+            	<div id="testw" style="display:none;">fadfa</div>
+            </div>
+        </div>
+        <div style="margin-left:10px; margin-top:10px; border:1px solid red; width:200px; height:30px; overflow:visible;" id="btns"></div>
+        <script type="text/javascript">
+		
+		var f1,f2;
+		$require( [
+			'Nex.form.Text',
+			'Nex.form.Select',
+			'Nex.button.Button',
+			'Nex.form.Trigger',
+			'Nex.panel.Panel',
+			'Nex.grid.Grid'
+		],function(){
+			Nex.Create('panel',{
+				width : '80%',
+				title : 'test',
+				height : 400,
+				padding : 5,
+				items : [
+					{
+						xtype : 'panel',
+						width : 'auto',
+						autoResize : true,
+						height : 300,
+						title : 'inner-test',
+						padding : 5,
+						items : [
+							{
+								xtype : 'panel',
+								width : '100%',
+								height : 100,
+								title : 'inside'	
+							},
+							{
+								xtype : 'grid',
+								width : '100%',
+								height : 100,
+								title : 'inside',
+								columns : [ { title : 'test' } ]	
+							}
+						]
+					}
+				]
+			})
+		} );
+		</script>
+        
+    </body>
+</html>

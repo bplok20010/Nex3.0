@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/jquery1.8.2.min.js"></script>
+<script type="text/javascript" src="js/jquery.jTips.js"></script>
+<link href="css/jquery.jTips.css" rel="stylesheet" media="all" />
+
+<style type="text/css">
+* { margin:0px; padding:0px;}
+/*箭頭向下*/
+   .border-triangle {
+   position:absolute;
+        border-color: rgb(207, 207, 207) transparent transparent; border-style: solid dashed dashed;
+       border-width: 8px 7px 0;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:0px;
+		z-index:1;
+    }
+ .border-triangle2 {
+ 	position:absolute;
+        border-color: rgb(255, 255, 255) transparent transparent; border-style: solid dashed dashed;
+    border-width: 7px 6px 0;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:1px;
+		z-index:2
+    }
+	 .border-demo {
+        border-width:60px 0 60px 100px;border-style:solid;border-color:red green black blue;line-height:0;font-size:0;overflow:hidden; width:0px;height:0;
+    }
+	/*箭頭向上*/
+.border-up {
+position:absolute;
+        border-color: transparent transparent rgb(207, 207, 207)  transparent; border-style: dashed dashed solid;
+       border-width: 0px 7px 8px;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:0px;
+		z-index:1;
+}
+.border-up1 {
+position:absolute;
+        border-color: transparent transparent rgb(255, 255, 255)  transparent; border-style: dashed dashed solid;
+       border-width: 0px 6px 7px;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:1px;
+		top:1px;
+		z-index:1;
+}
+/*箭頭向左*/
+.border-left {
+position:absolute;
+        border-color: transparent transparent  transparent rgb(207, 207, 207)  ; border-style: dashed dashed dashed solid;
+       border-width: 7px 0px 7px 8px;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:0px;
+		z-index:1;
+}
+.border-left1 {
+background:;
+position:absolute;
+        border-color: transparent  transparent  transparent rgb(255, 255, 255) ; border-style: dashed dashed dashed solid ;
+       border-width: 6px 0px 6px 7px;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:0px;
+		top:1px;
+		z-index:1;
+}
+/*箭頭向右*/
+.border-right {
+position:absolute;
+        border-color: transparent rgb(207, 207, 207) transparent  transparent   ; border-style: dashed solid dashed dashed ;
+       border-width: 7px 8px 7px 0;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:0px;
+		z-index:1;
+}
+.border-right1 {
+position:absolute;
+        border-color: transparent rgb(255, 255, 255)  transparent  transparent ; border-style: dashed solid dashed dashed  ;
+        border-width: 6px 7px 6px 0;
+        height: 0;
+        width: 0;
+        display: inline-block; /* demo */
+		left:1px;
+		top:1px;
+		z-index:1;
+}
+</style>
+</head>
+
+<body>
+<div style="height:700px; width:2000px;">ad</div>
+<div id="demo1" style=" float:left;" jtip-title="11aaaaaaaaaaaaaaaaaaaacv">12222222222222</div><div id="fc" style="position:absolute; left:200px; top:100px;" jtip-title="dfas">xx</div>
+<div id="demo2" href="http://127.0.0.1:8221/ajax.uchome/jTips/test.php" style="position:absolute; left:100px; top:220px;" jtip-title=".">ccccccccbcccc</div>
+<div id="demo3" style="position:absolute; left:1500px; top:320px;" jtip-title="10000">marleft 1500</div>
+<div id="demo4" style="position:absolute; left:100px; top:420px;" jtip-title="44444441">cccccccccccc</div>
+<div style=" visibility:visible" id="dv"><span id="cvs">adfa</span></div>
+<pre style="color:blue;">
+	var a;
+</pre>
+<script type="text/javascript">
+$(function(){
+	$("#demo1,#fc").jTips({hook:'topcenter',sizeIcon:7,wTime:2000,skin:'white',tid:'t5',randomid:true});
+	$("#demo2").jTips({hook:'bottomleft',ajax:true,wTime:100,ajaxCache:true,skin:'gray',tid:'t5',randomid:true});
+	$("#demo3").jTips({hook:'righttop',sizeIcon:0,wTime:1000000,skin:'yel1',tid:'t5',padding:7,randomid:true});
+	$("#demo4").jTips({hook:'righttop',sizeIcon:7,skin:'yel1',tid:'t5',randomid:true});
+});
+
+
+</script>
+</body>
+</html>

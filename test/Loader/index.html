@@ -1,0 +1,75 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <script src="../../src/jquery-1.8.3.js"></script>
+    </head>
+    <body style="height:100%;">
+       <div>动态加载脚本测试...</div>
+       <script type="text/javascript">
+	   		
+	   		function loadScript( url,func ){
+				var head = document.getElementsByTagName('head')[0];	
+				var isOpera = false;
+				
+				function loadSuccess( evt ){
+					var node = evt.currentTarget || evt.srcElement;
+					if (evt.type === 'load' ||
+								(/^(complete|loaded)$/.test(node.readyState))) {
+						console.log('load success');
+						if( $.isFunction( func ) ) {
+							func();	
+						}
+					 }
+					 return this;
+				}	
+				function loadError( evt ){
+					 console.log('load error');
+					 return this;
+				}	
+				
+				node = document.createElement('script');	
+				node.type = 'text/javascript';
+				node.charset = 'utf-8';
+				node.async = true;
+				/*
+				*IE下有脚本执行的onload触发时，未必是当前脚本直接结束。可能是好几个脚本同时执行结束后才触发。。。
+				*/
+				//node.scriptName = _currName;
+				
+				var complete = function(){
+					opt.head.removeChild(node);
+					if( $.isFunction(c) ) {
+						c();
+					}
+				};
+				
+				if (node.attachEvent &&
+						!(node.attachEvent.toString && node.attachEvent.toString().indexOf('[native code') < 0) &&
+						!isOpera) {
+					node.attachEvent('onreadystatechange', function(evt){
+						loadSuccess(evt);	
+					});
+				} else {
+					node.addEventListener('load', function(evt){
+						loadSuccess(evt);
+					});
+					node.addEventListener('error', function(evt){
+						loadError(evt);
+					});
+				}
+				//baseElement
+				node.src = url;
+				// ref: #185 & http://dev.jquery.com/ticket/2709
+				head.appendChild(node)
+				//head.appendChild(node);
+				
+				//return node;
+			}
+	   </script>
+    </body>
+</html>

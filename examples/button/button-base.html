@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html style="height : 100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+		<link rel="stylesheet" href="../../src/themes/default/buttons/nexButton.css">
+		<link href="../../src/themes/default/menu/nexMenu.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../../src/themes/default/showat/nexShowAt.css">
+       	<script src="../../src/jquery-1.8.0.min.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/button/Button.js"></script>
+    </head>
+    <body style="margin:0px; padding:0px; height:100%; width:100%;">
+    <style type="text/css">
+	.nex-menu {
+		border:1px solid red;	
+	}	
+	</style>
+    
+		     
+        <div class="container" style="height:80%;">
+            <div id="base" style="height:80%; overflow:hidden;">
+            	
+            </div>
+        </div>
+        <div style="width:200px; height:200px; border:1px solid red; padding:10px;">
+        	
+        </div>	
+        <script type="text/javascript">
+		var p1,p2,p3;
+			Nex.onReady(function(){
+			
+			p1=	Nex.Create('button',{
+					renderTo : '#base',
+					text : 'test1000000000',
+					toggleBtn : true,
+					plain : true,
+					width : '100',
+					height : '100%',
+					tabIndex : -1,
+					autoResize : true,
+				//	height : 50,
+					icon : 'http://127.0.0.1/ext-4.1.0-beta-1/examples/toolbar/images/add16.gif',
+					onClick : function(){
+						Nex.Create('menu', {
+							items : this.C('menu2'),
+							autoShow : true,
+							showAt : { at : this.el }	
+						})	
+					},
+					menu2 : [
+						{ text : '1111' ,items : [ {text:'abc'} ]},
+						{ text : '2222',onClick:function(){alert(1)} },
+						',',
+						{ text : '1133311' },
+						{ text : '114411' },
+						{ text : '55' }
+					],
+					callBack : function(){
+						//console.log( 456 );
+					}
+				});
+			p3=	Nex.Create('filebutton',{
+					renderTo : '#base',
+					text : 'test1000000000',
+					autoFocus : true,
+					//toggleBtn : true,
+					//disabled : true,
+					//plain : true,
+					width : '100',
+					height : '40%',
+					autoResize : true,
+					icon : 'http://127.0.0.1/ext-4.1.0-beta-1/examples/toolbar/images/add16.gif',
+					callBack : function(){
+					}
+				});	
+			p2=	Nex.Create('button',{
+					renderTo : '#base',
+					text : 'test2',
+					icon : 'http://127.0.0.1/ext-4.1.0-beta-1/examples/toolbar/images/add16.gif',
+				//	width : '50%',
+				//	icon : 'abc',
+					//height : 50,
+					//disabled : true,
+					arrowAlign : 'right',
+					onClick : function(){
+						Nex.Create('menu', {
+							items : this.C('menu2'),
+							autoShow : true,
+							showAt : { at : this.el }	
+						})	
+					},
+					menu2 : [
+						{ text : '1111' ,items : [ {text:'abc'} ]},
+						{ text : '2222',onClick:function(){alert(1)} },
+						',',
+						{ text : '1133311' },
+						{ text : '114411' },
+						{ text : '55' }
+					]
+				});
+			});
+		</script>
+        <button id="test" onFocus="console.log('1')" onBlur="console.log(2)" onClick="console.log(3)">abcadf</button>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <link rel="stylesheet" href="../../src/themes/default/grid/absgrid.css">
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <script src="../../src/nex/Nex.js"></script>
+        <script src="../../src/nex/Base.js"></script>
+        <script src="../../src/nex/core/Base.js"></script>
+        <script src="../../src/nex/core/Class.js"></script>
+        <script src="../../src/nex/EventObject.js"></script>
+        <script src="../../src/nex/ComponentManager.js"></script>
+        <script src="../../src/nex/AbstractComponent.js"></script>
+        <script src="../../src/nex/Loader.js"></script>
+        <script src="../../src/nex/Ajax.js"></script>
+    </head>
+    <body style="padding:10px;">
+    	<input type="file" name="file" class="file" onChange="_start();">
+        <input type="button" value="取消" onClick="cancel();">
+    	<div id="response"></div>
+      <!--  function(data,s,f){
+						console.log( data );
+						setTimeout(function(){
+							s('----')	
+						},data.C*1000);
+					},//-->
+       <script type="text/javascript">
+	   	var ajax;
+		var console = console || { log:$.noop};
+		
+		function _start(){
+			ajax = Nex.Create('ajax',{
+					url : 'text.php?t='+$.now(),
+					//sendType : 'file',
+					fileFields : '.file',
+					data : {
+						C : 4	
+					},	
+					timeout : 4000,
+					dataFilter : function(d,t){
+						console.log(d,t);	
+						return d+'nobooo';
+					},
+					onBeforeSend : function(){
+						$('#response').append('loading...<br>');	
+						console.log( arguments );	
+					},
+					onSuccess : function(d){
+						$('#response').append(d);
+						console.log( arguments );		
+					},
+					onError : function(d){
+						$('#response').append(' error ');	
+						console.log( 'error',arguments );	
+					},
+					onAbort : function(xhr, d){
+						$('#response').append(d);	
+						console.log( 'abort',arguments );	
+					},
+					onComplete : function(d){
+						$('#response').append(' comolete ');	
+						console.log( arguments );	
+					}
+				});	
+		}
+		function cancel(){
+			ajax.abort();	
+		}
+		var def;
+		var aj;
+		var def2 = $.Deferred();
+		def2.resolveWith({a:1},[1,2,3]);
+			Nex.onReady(function(){
+				//start();
+				_start();
+				def = Nex.when(
+					aj=Nex.Create('ajax',{url:'text.php?C=1',onSuccess:function(){console.log(1)}}),
+					Nex.Create('ajax',{url:'text.phap?C=2',onSuccess:function(){console.log(2)}}),
+					Nex.Create('ajax',{url:'text.php?C=3',onSuccess:function(){console.log(3)}}),
+					Nex.Create('ajax',{url:'text.php?C=4',onSuccess:function(){console.log(4)}})
+				).fail(function(){
+					console.log('fail')	
+				}).done(function(){
+					console.log('fail')		
+				});
+			});
+		</script> 
+        
+    </body>
+</html>

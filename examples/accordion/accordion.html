@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <link rel="stylesheet" href="../../src/themes/default/accordion/Accordion.css">
+        <script src="../../src/jquery-1.8.3.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/accordion/Accordion.js"></script>
+    </head>
+    <body style="height:100%;">
+    	<style type="text/css">
+		</style>
+		<div id="base" style="width:80%; overflow:hidden; height:80%;">
+		</div>
+        <script type="text/javascript">
+		var a;
+		Nex.onReady(function(){
+			a = Nex.create('accordion',{
+				singleSelect : false,
+				border : true,
+				height : '50%',
+				width : 200,
+				items : [
+					{ 
+						title : '1',
+						html : 'dddddddddddddddddddddd'	
+					},
+					{ title : '2', items : {
+						html : 'Hello World!!'	
+					}},
+					{ title : '3' }
+				],
+				renderTo : '#base'
+			});
+		});
+		</script>
+    </body>
+</html>

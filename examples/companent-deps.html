@@ -1,0 +1,195 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="css/examples.css">
+        <link rel="stylesheet" href="../src/themes/default/nexBase.css">
+        <script src="../src/jquery-1.8.3.js"></script>
+    </head>
+    <body style="height:100%; ">
+<script type="text/javascript">
+
+var list = loadDeps({
+		'A' : ['B','C','F'],
+		'B' : ['D'],
+		'D' : [],
+		'F' : ['Z'],
+		'C' : [],
+		'Z' : []
+	}, 'A');
+console.log(list);
+/*
+加载依赖算法：
+	1.加载一个依赖MAP
+	2.遍历MAP：如果文件所需要的依赖是一个空数组 or True or 所依赖的文件都不存在MAP中（这个时候把不存在MAP中的依赖删去）,则说明当前文件不需要依赖任何文件，可直接加载进来并从MAP中删去
+	3.重复第二步
+	4.如果出现了循环依赖的：程序默认有个TTL值 循环次数是初始MAP的行数，超出后直接加载剩余MAP的文件
+*/
+// maps 依赖MAP files可指定需要加载那些依赖 否则全部加载
+function loadDeps( maps, files ){
+	var maps = maps || {};
+	var undef;
+/*	{
+		'A' : ['B','C','F'],
+		'B' : ['D'],
+		'D' : [],
+		'F' : ['Z'],
+		'C' : [],
+		'Z' : []
+	};*/
+	
+	var lmap = {};
+	function getDeps(file){
+		var ndeps = [];
+		if( !(file in maps) ) {
+			return [];	
+		}	
+		
+		if( file in lmap ) {
+			return [];	
+		}
+		
+		lmap[file] = true;
+		
+		var deps = maps[file];
+		if( typeOf(deps) != 'array' ) {
+			if( typeOf(deps) == 'string' ) {
+				deps = [deps]	
+			} else {
+				deps = [];
+			}
+		}
+		ndeps.push.apply(ndeps, deps);	
+		each(deps, function(i, dep){
+			ndeps.push.apply(ndeps, getDeps(dep));	
+		});
+		return ndeps;
+	}
+	
+	if(files !== undef) {
+		files = typeOf(files) == 'array' ? files : [files];	
+		var newMaps = {};
+		each(files, function(i, file){
+			newMaps[file] = maps[file];
+			var _dps = [file].concat(getDeps(file));
+			each( _dps, function(i, file){
+				newMaps[file] = maps[file];	
+			} );
+		});
+		maps = newMaps;
+	}
+
+	var loadQueues = [];
+	var loadCache = {};
+	function typeOf(value) {
+		var toString = Object.prototype.toString;
+		if (value === null) {
+			return 'null';
+		}
+	
+		var type = typeof value;
+	
+		if (type === 'undefined' || type === 'string' || type === 'number' || type === 'boolean') {
+			return type;
+		}
+	
+		var typeToString = toString.call(value);
+	
+		switch(typeToString) {
+			case '[object Array]':
+				return 'array';
+			case '[object Date]':
+				return 'date';
+			case '[object Boolean]':
+				return 'boolean';
+			case '[object Number]':
+				return 'number';
+			case '[object RegExp]':
+				return 'regexp';
+		}
+	
+		if (type === 'function') {
+			return 'function';
+		}
+	}
+	function each(d, fn){
+		if( typeOf(d) == 'array' ) {
+			for( var i=0;i<d.length;i++ ) {
+				fn(i, d[i]);	
+			}	
+		} else {
+			for( var k in d ) {
+				fn(k, d[k]);	
+			}	
+		}	
+	}
+	var execDeps = function(){
+		var num = 0;
+		//这里的mod是指module  deps是指依赖
+		each( maps,function( file, deps ){
+			//如果已经执行，就跳过
+			if( file in loadCache ) {
+				return;	
+			}
+			
+			if( typeOf(deps) != 'array' ) {
+				if( typeOf(deps) == 'string' ) {
+					deps = [deps]	
+				} else {
+					deps = [];
+				}
+			}
+			//执行步骤2 检测依赖是否为空
+			var newDeps = [];
+			for( var i=0,len=deps.length;i<len;i++ ) {
+				var dep = deps[i];
+				if( dep in loadCache ) {
+					continue;
+				}
+				if( !(dep in maps) ) {
+					continue;
+				}	
+				newDeps.push(dep);
+			}
+			maps[file] = newDeps;
+			//如果依赖为空 则说明当前文件无依赖 加入队列中	
+			if( !newDeps.length ) {
+				loadQueues.push( file );
+				loadCache[file] = true;	
+			} else {
+				num++;
+			}
+		} )	;
+		return num;
+	};
+	var t = 0;
+	var x = 0;
+	//循环计算依赖模块的执行顺序
+	while( t=execDeps() ) {
+		if( t == x ) {
+			break;	
+		}	
+		x = t;
+	}
+	//如果t>0 说明出现了循环依赖
+	//这个时候 我们不再计算，直接执行
+	if( t>0 ) {
+		each( maps,function( file, deps ){
+			if( file in loadCache ) {
+				return;
+			}
+			loadQueues.push( file );
+			loadCache[file] = true;	
+		} )	;	
+	}
+	return loadQueues;
+}
+
+
+</script>  
+    </body>
+</html>

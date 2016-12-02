@@ -1,0 +1,113 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="css/examples.css">
+        <link rel="stylesheet" href="../src/themes/default/nexBase.css">
+        <script src="../src/jquery-1.8.3.js"></script>
+        <script type="text/javascript">
+		
+		</script>
+        <script src="../src/nex/Base.js"></script>
+        <script src="../src/nex/Nex3.js"></script>
+        <script src="../src/nex/core/Base.js"></script>
+        <script src="../src/nex/core/Class.js"></script>
+        <script src="../src/nex/EventObject.js"></script>
+        <script src="../src/nex/ComponentManager.js"></script>
+        <script src="../src/nex/AbstractComponent.js"></script>
+        <script src="../src/nex/Component.js"></script>
+        <script src="../src/nex/Loader.js"></script>
+        <!--<script src="../src/nex/container/AbstractContainer.js"></script>
+        <script src="../src/nex/effects/Effects.js"></script>-->
+        <script src="../src/nex/container/Container.js"></script>
+    </head>
+    <body style="height:100%; ">
+    <div id="log"></div>
+<script type="text/javascript">
+var console = console || { log:$.noop };
+			console.log2 = console.log;
+			console.log = function(){
+				var args = [].slice.apply(arguments);	
+				$('#log').append( '<div>'+args.join(' ')+'</div>' );
+			}
+Nex.define( 'A',{ extend : 'Nex.EventObject',test : function(){ this.callParent();console.log('A'); } } )
+Nex.define( 'B',{ extend : 'A',configs:{ c : 1 },test : function(){ this.callParent();console.log('B'); } } )
+Nex.define( 'C','B',{ configs:{ t : 1 },test : function(){ this.callParent();console.log('C'); } } )
+Nex.define( 'D','C',{ mixins : [ { test2 : function(){ console.log(1) } } ],test : function(){ this.callParent();console.log('D'); } } );
+//var t = Nex.Create('D');
+//t.test();
+var html1,html2,html3;
+		//alert(Nex.Loader)
+		Nex.onReady(function(){
+			//alert(Nex.Container);
+			//Nex.Container.create({
+//				html:'Hello Word!'	
+//			});
+			//alert( Nex.Create );
+			html1 = Nex.Create('component',{
+				html:'Hello Word!--',
+				//ui : 'mobo',
+			//	autoRender : false,
+				width : 200,
+				uiCls : ['test','af'],
+				cls : 'tes',
+				selectionable : false,
+				cssText : 'border:1px solid red'
+			});
+			//alert( Nex.Container.prototype.constructor );
+			html2 = Nex.Create('container',{
+				//autoRender : false,
+				defaults : {
+					html : '---'	
+				},
+				html:[
+					{ xtype : 'container',html:1 },
+					{ xtype : 'container' }
+				],
+				items:[
+					{ xtype : 'container',html:1 },
+					{ xtype : 'container',html:2 }
+				],
+				width : '100%',
+				animate : true,
+				minWidth : 600,
+				height : '40%',
+				items : {
+					xtype : 'container',
+					cssText : 'border:1px solid red',
+					width : '50%',	
+					height : '50%'
+				},
+				//ui : 'mobo',
+			//	autoRender : false,
+				uiCls : ['test','af'],
+				cls : 'tes',
+				//selectionable : false,
+				cssText : 'border:1px solid red'
+			});
+		});		
+var s = {
+	test : function(){
+		this.test2()
+	},
+	test1 : function(){
+		this.test();	
+	},
+	test2 : function(){
+		alert( this.test2.caller.$owner );
+	},
+	constructor : function(){ console.log('init'); }	
+}
+s.test1.$owner = 'test1';	
+s.test.$owner = 'test';		
+
+//s.test1();
+//alert(s.constructor);
+
+</script>  
+    </body>
+</html>

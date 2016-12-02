@@ -1,0 +1,159 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+		<!--<link rel="stylesheet" href="http://127.0.0.1/rainbow-epr/lib/bootstrap/Bootflat/css/site.min.css">-->
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/form/form.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/panel2.css">
+		<link rel="stylesheet" href="../../src/themes/default/window/Window2.css">
+        <link rel="stylesheet" href="../../src/themes/default/tooltip/ToolTip.css">
+        <script src="../../src/jquery-1.8.0.min.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+    </head>
+    <body style="padding:20px;">
+    	<div>
+        	<span id="" tabindex="3" class="nex-form-checkbox-item nex-form-checkbox-item-d-inline" value="1" style=""><span id="" class="nex-form-checkbox-icon"></span><span class="nex-form-checkbox-text">测试</span></span>
+        </div>
+    	<style type="text/css">
+			.nex-form-checkbox-text { font-size:12px;}
+		</style>
+        <script type="text/javascript">
+		var sel,sel1, sel2, sel4;
+		$require([
+			'Nex.tooltip.ToolTip',
+			'Nex.form.Checkbox',
+			'Nex.form.Select',
+			'Nex.form.Textarea',
+			'Nex.form.Text',
+			'Nex.form.Password',
+			'Nex.form.Hidden',
+			'Nex.form.SingleCheckbox',
+			'Nex.form.ComboBox'
+		], function(){
+			sel = Nex.Create('checkboxfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				items : [
+					{ text : '测试',value:'1',display : 'block' },
+					//',',
+					{ text : '111',value:'2',disabled : true },
+					{ text : '111',value:'3' },
+					{ text : '111',value:'4' },
+					{ text : '111',value:'5' },
+					{ text : '111',value:'6' }
+				]	
+			});
+			sel1 = Nex.Create('radiofield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block',
+				items : [
+					{ text : '测试',value:'1',display : 'block' },
+					//',',
+					{ text : '111',value:'2' },
+					{ text : '111',value:'3' },
+					{ text : '111',value:'4' },
+					{ text : '111',value:'5' },
+					{ text : '111',value:'6' }
+				]	
+			});
+			sel3 = Nex.Create('triggerfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block',
+				//width : 'auto',
+				onTriggerClick : function(){
+					//this.showDropDown();
+					if( this.win ) {
+						this.win.toggle();
+						return;	
+					};
+					this.win = Nex.Create('tooltip',{
+						draggable : false,
+						showAt : {
+							at : this.getInput(),
+							yAlign : 'bottom',
+							xAlign : 'left'	
+						},
+						bodyPadding : 3,
+						closeOnDom : {
+							cancel : this.el,
+							action : 'hide',
+							enable : true	
+						},
+						html : 'dropdown'	
+					});
+				},
+				items : [
+					{ text : '测试',value:'1',display : 'block' },
+					//',',
+					{ text : '111',value:'2' },
+					{ text : '111',value:'3' },
+					{ text : '111',value:'4' },
+					{ text : '111',value:'5' },
+					{ text : '111',value:'6' }
+				]	
+			});
+			sel3 = Nex.Create('selectfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block',
+				items : [
+					{ text : '测试',value:'1',display : 'block' },
+					//',',
+					{ text : '111',value:'2' },
+					{ text : '111',value:'3' },
+					{ text : '111',value:'4' },
+					{ text : '111',value:'5' },
+					{ text : '111',value:'6' }
+				]	
+			});
+			Nex.Create('textareafield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block'	
+			});
+			Nex.Create('textfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block'	
+			});
+			Nex.Create('passwordfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block'	
+			});
+			Nex.Create('hiddenfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				display : 'block'	
+			});
+			sel4 = Nex.Create('singlecheckboxfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				//text : '跟随字符串',
+				display : 'block'	
+			});
+			sel4 = Nex.Create('comboboxfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				//text : '跟随字符串',
+				display : 'block'	
+			});
+			sel4 = Nex.Create('displayfield', {
+				labelText : '测试',
+				labelWidth : 30,
+				value : 'displayfield',
+				//text : '跟随字符串',
+				display : 'block'	
+			});
+		});
+		</script>
+    </body>
+</html>

@@ -1,0 +1,229 @@
+.nex-tab {
+	position:relative;	
+}
+.nex-tab-clear {
+	clear:both;
+	width:0px;
+	height:0px;
+	overflow:hidden;
+	font-size:0px;	
+}
+.nex-tab-header {
+	/*height:auto;*/
+}
+.nex-tab-header .nex-tab-header-wrap {
+	width:1000000px;
+	/*width:auto;*/	
+}
+.nex-tab-header-wrap-inner {
+	margin:0px;
+	padding:0px;
+	border:none;
+	float:left;
+}
+.nex-stab-header-left > .nex-stab-header-inner,
+.nex-stab-header-right > .nex-stab-header-inner {
+	overflow-y:auto;
+}
+.nex-ie6 .nex-stab-header-left .nex-stab-header-inner,
+.nex-ie6 .nex-stab-header-right .nex-stab-header-inner {
+	overflow-y:auto;
+}
+.nex-tab-header-item {
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	vertical-align: top;	
+}
+.nex-stab-header-left,
+.nex-stab-header-right {
+	position:absolute;
+	height:100%;
+}
+.nex-stab-header-left .nex-tab-header-inner,
+.nex-stab-header-right .nex-tab-header-inner {
+	height:100%;
+}
+.nex-stab-header-left .nex-tab-header-wrap,
+.nex-stab-header-right .nex-tab-header-wrap {
+	width:auto;
+	height:auto;
+}
+.nex-stab-header-left .nex-tab-header-wrap-inner,
+.nex-stab-header-right .nex-tab-header-wrap-inner {
+	float:none;
+}
+
+.nex-stab-header-left .nex-tab-header-item,
+.nex-stab-header-right .nex-tab-header-item {
+	display:block;	
+}
+/*left*/
+.nex-stab-header-left .nex-stab-item-inner {
+	text-align:left;	
+}
+.nex-stab-header-left .nex-stab-item-close {
+	position:absolute;
+	right:0px;
+	top:50%;
+	margin-top:-8px;	
+}
+.nex-stab-header-left .nex-stab-header-item {
+	border-right : none;
+	border-bottom:1px solid #d9d9d9;
+}
+.nex-stab-header-left .nex-stab-header-item-over {
+	-webkit-box-shadow: inset 3px 0 0 #047fc8;
+	-moz-box-shadow: inset 3px 0 0 #047fc8;
+	box-shadow: inset 3px 0 0 #047fc8;
+}
+.nex-stab-header-left .nex-stab-header-item-selected {
+	background:#FFF;
+	-webkit-box-shadow: inset 3px 0 0 #15a4fa;
+	-moz-box-shadow: inset 3px 0 0 #15a4fa;
+	box-shadow: inset 3px 0 0 #15a4fa;
+}
+/*right*/
+.nex-stab-header-right .nex-stab-item-inner {
+	text-align:left;	
+}
+.nex-stab-header-right .nex-stab-item-close {
+	position:absolute;
+	right:0px;
+	top:50%;
+	margin-top:-8px;	
+}
+.nex-stab-header-right .nex-stab-header-item {
+	border-right : none;
+	border-bottom:1px solid #d9d9d9;
+}
+.nex-stab-header-right .nex-stab-header-item-over {
+	-webkit-box-shadow: inset -3px 0 0 #047fc8;
+	-moz-box-shadow: inset -3px 0 0 #047fc8;
+	box-shadow: inset -3px 0 0 #047fc8;
+}
+.nex-stab-header-right .nex-stab-header-item-selected {
+	background:#FFF;
+	-webkit-box-shadow: inset -3px 0 0 #15a4fa;
+	-moz-box-shadow: inset -3px 0 0 #15a4fa;
+	box-shadow: inset -3px 0 0 #15a4fa;
+}
+/*IE9以下兼容写法*/
+/*left*/
+.nex-ielt9 .nex-stab-header-left .nex-stab-header-item {
+	height:30px;
+	line-height:30px;
+	padding-top:0px;
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-icon,
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-close,
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-text {
+	height:30px;
+	line-height:30px;
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-close,
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-icon {
+	width:20px;
+	height:20px;
+	line-height:20px;
+	margin-top:5px;
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-item-close {
+	width:16px;
+	height:16px;
+	line-height:16px;
+	margin-top:-8px;
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-header-item {
+	padding-left:3px;
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-header-item-over {
+	padding-left:0px;
+	padding-top:0px;
+	border-top:none;
+	border-left:3px solid #047fc8;	
+}
+.nex-ielt9 .nex-stab-header-left .nex-stab-header-item-selected {
+	padding-left:0px;
+	padding-top:0px;
+	border-top:none;
+	border-left:3px solid #15a4fa;	
+}
+/*right*/
+.nex-ielt9 .nex-stab-header-right .nex-stab-header-item {
+	height:30px;
+	line-height:30px;
+	padding-top:0px;
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-icon,
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-close,
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-text {
+	height:30px;
+	line-height:30px;
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-close,
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-icon {
+	width:20px;
+	height:20px;
+	line-height:20px;
+	margin-top:5px;
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-item-close {
+	width:16px;
+	height:16px;
+	line-height:16px;
+	margin-top:-8px;
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-header-item {
+	padding-right:3px;
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-header-item-over {
+	padding-right:0px;
+	padding-top:0px;
+	border-top:none;
+	border-right:3px solid #047fc8;	
+}
+.nex-ielt9 .nex-stab-header-right .nex-stab-header-item-selected {
+	padding-right:0px;
+	padding-top:0px;
+	border-top:none;
+	border-right:3px solid #15a4fa;	
+}
+/*tools icon*/
+.nex-tab-header-inner {
+	/*padding-right:60px;	*/
+}
+.nex-tab-tools {
+	position:absolute;
+	right:0px;
+	top:0px;
+	display:none;
+	/*width:60px;*/
+	height:30px;
+	line-height:30px;
+	/*overflow:hidden;*/
+	background: #EDEDED;
+}
+.nex-tab-tool {
+	float:left;
+	width:20px;
+	height:30px;
+	line-height:30px;	
+}
+.nex-tab-left,
+.nex-tab-right {
+	cursor:pointer;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.nex-tab-left {
+	background-image:url(images/arrow-l.png);	
+}
+.nex-tab-right {
+	background-image:url(images/arrow-r.png);	
+}
+.nex-tab-tool-disabled {
+	opacity: .4;
+	filter: alpha(opacity=40);
+	cursor:default;
+}

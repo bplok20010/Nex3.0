@@ -1,0 +1,45 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="../css/examples.css">
+        <link rel="stylesheet" href="../../src/themes/default/nexBase.css">
+        <link rel="stylesheet" href="../../src/themes/default/panel/Panel2.css">
+        <script src="../../src/jquery-1.8.0.min.js"></script>
+        <script src="../../src/nex/Nex.core.min.js"></script>
+        <script src="../../src/nex/panel/Panel.js"></script>
+    </head>
+    <body style="height:100%;">
+    	
+        <script type="text/javascript">
+			var p1,p2,p3;
+			Nex.onReady(function(){
+				p1 = Nex.Create('panel',{
+						title : 'test',
+						width : '50%',
+						height : '50%',
+						html : 'adf',
+						items : [
+							{
+								xtype : 'panel',
+								width : '50%',
+								height : '50%',	
+								html : {
+									xtype : 'panel',
+									width : '50%',
+									height : '50%',	
+									html : 'inner'
+								}
+							}
+						],
+						iconCls : 't',
+						toolsItems : [1,2,3]
+					});
+			});
+		</script>
+    </body>
+</html>

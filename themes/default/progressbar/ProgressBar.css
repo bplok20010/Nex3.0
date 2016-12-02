@@ -1,0 +1,20 @@
+.nex-progress {
+}
+.nex-progress-text {
+	text-align:center;
+	color:#fff;
+}
+.nex-progress-bg {
+	width:100%;
+	background-color:#E0E0E0;
+	color:#000;
+}
+.nex-progress-bar {
+	background-color:#16BC5C;
+	overflow:hidden;
+}
+.nex-progress-bar{
+	position:absolute;
+	left:0px;
+	top:0px;	
+}

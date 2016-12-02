@@ -1,0 +1,138 @@
+<!DOCTYPE html> 
+<html style="height:100%;">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <link rel="stylesheet" href="css/examples.css">
+        <link rel="stylesheet" href="../themes/default/nex.css">
+        <script src="../jquery/jquery-1.8.3.js"></script>
+        
+		<script src="./asset/js/codemirror.js"></script>
+        <script src="./asset/js/javascript.js"></script>
+    
+        <link href="./asset/css/codemirror.css" rel="stylesheet">
+        <link href="./asset/css/monokai.css" rel="stylesheet">
+        
+        <script type="text/javascript">
+		var NexDev = true;
+		</script>
+        <script src="../loader.js"></script>
+        <!--<script src="../nex-all.js"></script>-->
+        <style type="text/css">
+		html, body {
+			width:100%;
+			height:100%;
+			overflow:hidden;
+			margin:0; padding:0;	
+		}
+		</style>
+    </head>
+    <body>
+    <script type="text/javascript">
+	var code;
+	var render;
+	function logs(){
+		var s = [].slice.apply(arguments);
+		$.each(s, function(i, m){
+			Nex.sendMessageToGroup('log', 'onReciveLog', [m]);	
+		})	
+	}
+	function runCode(){
+		render.empty();
+		Nex.gc();
+		eval(code.getValue());		
+	}
+	require(['Nex/layout/Layout', 'Nex/Ajax', 'Nex/form/Select'], function(layout){
+		layout.create({
+			border: false,
+			width : '100%',
+			height : '100%',
+			layouts: ['west','north','south'],
+			west : {
+				border: false,
+				width : 500,
+				"split" : true,
+				resizable : true	
+			},
+			north : {
+				border: false,
+				height : 40 	
+			},
+			center : {
+				border: false,
+				autoScroll : true	
+			},
+			south : {
+				height : 200,
+				border: false,
+				items : {
+					xtype : 'container',
+					groupName : 'log',
+					height : '100%',
+					autoScroll : true,
+					cssText : 'background : #000; color : #FFF',
+					onReciveLog : function(s){
+						this.add('<div>>  load '+s+' complete...</div>');
+						this.scrollToTopEnd();	
+					}	
+				} 	
+			},
+			onSouthCreate : function(){
+				//sendMessageToGroup
+				require.on('load', function(m){
+					logs(m);
+					//Nex.sendMessageToGroup('log', 'onReciveLog', [m]);
+				});
+				require.on('loaderror', function(m){
+					logs(m + ' error ');
+					//Nex.sendMessageToGroup('log', 'onReciveLog', [m]);
+				});
+			},
+			onNorthCreate : function(region){
+				
+				Nex.Create('selectfield', {
+					renderTo : region,
+					labelText : '选择Demo',
+					items : ['请选择','Grid.js'],
+					onChange : function(v){
+						if( v == '请选择' ) {
+							return;	
+						}	
+						Nex.Ajax.get('./demo/'+v, function(data){
+							code.setValue(data);	
+							$btn.click();
+						}, 'text');
+					}	
+				});
+				
+				region.css('textAlign', 'center');
+				var $btn  = $('<button>运行</button>');
+				region.append($btn);
+				$btn.click(function(){
+					runCode()	
+				});
+			},	
+			onWestCreate : function(region){
+				var bd = region.get(0);
+				code = CodeMirror(bd, {
+				  lineNumbers : true,
+				  autofocus : true,
+				  mode:  "javascript",
+				  width: '100%',
+				  height : '100%'
+				});	
+			},
+			onCenterCreate : function(region){
+				render = region;
+			},
+			onSizeChange : function(){
+				code.setSize('100%','100%');
+			}		
+		});	
+	});
+	</script>
+    </body>
+</html>

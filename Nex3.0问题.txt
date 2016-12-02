@@ -1,0 +1,46 @@
+1.Form labelPosition top/bottom是 label的宽度应该跟input一样宽，现在还是和labelWidth一样，---ok
+2.password plachoder 点击 无法隐藏 ，影响输入,有可能所有都这样  ---ok
+3.value 如果是Number无法赋值... ---ok 
+4.select下拉框如果有问题则出现 高度。。。 ---ok
+5.showLoading 在滚动时 下边还是会出现，遮挡的不全。。。不应该 用100% 可能要自动计算宽高了!!
+6.menu高度应该减掉6px
+7.datepicker autoSubmit设置后选择< >也会关闭
+8.ie7- window autoWidth 标题会缩成一团
+9.FF下 form 宽度计算有bug  ---ok
+10.layout cls属性无效
+11.grid使用expandRow后再床架grid好像会点问题。。。
+12.grid取消td样式 采用样式名来定义
+13.grid
+14.Form 新增Items 可使用组件  ---ok
+15.Loader 加载完后执行顺序的问题 ---ok
+16.优化getParent 以及 parent 不应该使用superclass名称。。。 命名不规范  --ok
+17.最好添加用户可自己手动开始渲染的api eg : renderTo  ---ok
+18.添加getChildren ... AllChildren  ---ok
+19.grid resize 的时候 empty-grid-msg 也需要resize
+20.grid sort 布局有问题，列的内容太宽 会把sort图标挤出去 ----不需要处理v
+21.新增一个container组件 containner组件和Html组件的区别在于 containner只能填充Nex组件不可以是字符串。。。
+	defaults //defaults are applied to items, not the container
+22.新增可多继承，组合组件 --ok
+23.是否需要新增高度 宽度控制。。。 或者 headerItems footerItems...
+24.tab的tid 应该加上 opt.id 
+25.新增多继承。。。或者虚类。。。 使用组合来解决多继承。。。0k
+26.render还有好多要处理 判断是否render。。。parseItems时 是否处理等等，---90%
+27.建议添加自动设置autoResie的检测
+28.dropdown 新增参数hideToRemove ---90%
+29.padding 还是修改成 container的padding body的padding有bodyPadding
+30.大部分组件还是应该继承panel合理一点
+31.验证grid  bcls 参数是否有效
+32.尽快把grid事件绑定修改为委托方式
+33.Nex.Form 改变name时 不应该要重新创建。。。 是否考虑可设置多个group  ok
+34.showLabel 应该设置为auto 自动判断是否为空 true时一定显示  ok
+35.layout 关闭侧边时 应该有个最小值
+36.util 和 组合。。。要不要分开呢？？ ------ 分开
+37.分离出Events
+38.tab 最后把 tabheader body 能分离和设置tabheader的宽度
+39.autoScrollCls 最好设置成body的样式
+40.loading如果出现滚动条会出现问题
+41.border 最后可让用户自定义设置 当然虽然有style 可以设置，但是borderStyle会比较好理解
+42.事件_executeEventMaps 引用问题， 如果在panel 的onCreate里 创建一个panel 那么里面的panel 不会触发onCreate 
+	因为外面的panel 在执行onCreate时 锁住了onCreate事件，而此时_executeEventMaps是panel的引用 隐藏的好深的BUG(注：此BUG是因为引用问题后续注意) ！！！！  ---ok
+43.checkbox radio 应该新增refreshItems 功能	 --ok
+44.最好加上一个checkLoader文件 ，作用在于 Nex.ready(function(){...});

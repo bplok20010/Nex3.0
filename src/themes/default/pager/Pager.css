@@ -1,0 +1,94 @@
+.nex-pager {
+}
+.nex-pager-view {
+	float:right;	
+}
+.nex-pager-info {
+	float:left;	
+}
+.nex-pager-size {
+	padding:0 2px;	
+}
+.nex-pager-sizelist {
+	
+}
+.nex-pager-sizelist .nex-form-field {
+	/*padding-top:1px;	
+	padding-bottom:1px;	*/
+}
+.nex-pager-sizelist .nex-form-trigger-body {
+	/*height:20px;*/	
+}
+.nex-pager-text {
+	/*vertical-align:middle;*/	
+}
+.nex-pager-items {
+	
+}
+.nex-pager-items li{
+	float:left;
+	list-style: none;
+}
+.nex-pager-forward {
+	display:inline-block;
+	margin-left:4px;	
+}
+.nex-pager-topage {
+	border: 1px solid #CCC;
+	padding:1px;
+	-webkit-transition-duration: .3s;
+	-moz-transition-duration: .3s;
+	-ms-transition-duration: .3s;
+	-o-transition-duration: .3s;
+	transition-duration: .3s;
+	-webkit-transition-property: background-color,border-color,color,-webkit-box-shadow,-webkit-transform;
+	-moz-transition-property: background-color,border-color,color,-moz-box-shadow,-moz-transform;
+	-ms-transition-property: background-color,border-color,color,-ms-box-shadow,-ms-transform;
+	-o-transition-property: background-color,border-color,color,-o-box-shadow,-o-transform;
+	transition-property: background-color,border-color,color,box-shadow,transform;
+}
+.nex-pager-topage:hover {
+	border-color : #26A0DA;
+}
+.nex-pager-forward,
+.nex-pager-msg,
+.nex-pager-size,
+.nex-pager-item {
+	height:25px;
+	line-height: 25px;
+}
+.nex-pager-item{
+	float:left;
+	list-style: none;
+	/*width:25px;*/
+	padding:0 8px;
+	margin-left:4px;
+	text-align: center;
+	text-decoration:none;
+	color:#000;
+}	
+.nex-pager-item{
+	cursor:pointer;
+	-webkit-transition-duration: .3s;
+    -moz-transition-duration: .3s;
+	-ms-transition-duration: .3s;
+	-o-transition-duration: .3s;
+	transition-duration: .3s;
+	-webkit-transition-property: background-color,border-color,color,-webkit-box-shadow,-webkit-transform;
+	-moz-transition-property: background-color,border-color,color,-moz-box-shadow,-moz-transform;
+	-ms-transition-property: background-color,border-color,color,-ms-box-shadow,-ms-transform;
+	-o-transition-property: background-color,border-color,color,-o-box-shadow,-o-transform;
+	transition-property: background-color,border-color,color,box-shadow,transform;
+}
+.nex-pager-item:hover{
+	background:#30bde0;
+	text-decoration:none;
+	color:#FFF;
+}
+.nex-pager-item-active {
+	background:#30bdeb;
+	color:#FFF;
+}
+.nex-pager-items .current{
+	background-color:#F5F8FD;
+}
